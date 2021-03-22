@@ -163,7 +163,7 @@ function scoreboard(getInningScorecb, inningcb, number) {
   let home = 0;
   let away = 0;
   for(let i = 0; i < getInningScorecb; i++){
-    let inningScores = getInningScore(inningcb);
+    let inningScores = getInningScorecb(inningcb);
     home += inningScores.Home;
     away += inningScores.Away;
     Score.push(`Inning ${i}: Away ${away} - Home ${home}`);
