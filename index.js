@@ -39,7 +39,7 @@ processFirstItem(["foo", "bar"], addStrings);
   
   2. Which of the two uses a closure? How can you tell?
 
-  counter1 because it has a nested function that can only be used in its parent function
+  counter1 because it has a nested function that has access to the variable in its parent function
   
   3. In what scenario would the counter1 code be preferable? In what scenario would 
      counter2 be better?  
@@ -75,10 +75,11 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(){
-    const randomNumber = Math.round(Math.random() * 2)
-    return randomNumber;
+function inning() {
+  const score = Math.floor(Math.random() * 3);
+  return score;
 }
+
 
 
 /* ⚾️⚾️⚾️ Task 3: finalScore() ⚾️⚾️⚾️
@@ -95,27 +96,25 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(inningcb, number){
-  let home = 0;
-  let away = 0;
-  for(let i = 0; i < number; i++){
-    home = inningcb() + home;
-    away = inningcb() + away;
-  }
-  return {Home: home, Away: away};
+function finalScore(inningCb, number) {
+let home = 0;
+let away = 0;
+for (let i = 0; i < number; i++){
+  home += inningCb();
+  away += inningCb();
 }
+return {Home: home, Away: away};
+}
+
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
 Use the getInningScore() function below to do the following:
   1. Receive a callback function - you will pass in the inning function from task 2 as your argument 
   2. Return an object with a score for home and a score for away that populates from invoking the inning callback function */
 
-function getInningScore(inningcb) {
-  let home = inningcb();
-  let away = inningcb();
-  return {Home: home, Away: away};
+function getInningScore(callBack){
+  return {Away: callBack, Home: callBack};
 }
-
 
 /* ⚾️⚾️⚾️ Task 5: scoreboard() ⚾️⚾️⚾️
 Use the scoreboard function below to do the following:
@@ -158,22 +157,8 @@ Use the scoreboard function below to do the following:
 ]  
   */
 
-function scoreboard(getInningScorecb, inningcb, number) {
-  let Score = [];
-  let home = 0;
-  let away = 0;
-  for(let i = 0; i < getInningScorecb; i++){
-    let inningScores = getInningScorecb(inningcb);
-    home += inningScores.Home;
-    away += inningScores.Away;
-    Score.push(`Inning ${i}: Away ${away} - Home ${home}`);
-  }
-  if (home === away) {
-    return `This game will require extra innings: Away ${away} - Home ${home}`;
-  } else {
-    return `Final score: Away ${away} - Home ${home}`;
-  }
-    
+function scoreboard(getInningScoreCb, inningCb, number){
+
 }
 
 
