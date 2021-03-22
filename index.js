@@ -164,8 +164,8 @@ function scoreboard(getInningScoreCb, inningCb, number){
   for (let i = 0; i < number; i++) {
     let inningScore = getInningScoreCb(inningCb)
     Score.push(`Inning ${i + 1}: Away ${inningScore.Away} - Home ${inningScore.Home}`)
-    home += inningCb();
-    away += inningCb();
+    home += inningScore.Home;
+    away += inningScore.Away;
   }
   if (home === away){
     Score.push(`This game will require extra innings: Away ${away} - Home ${home}`);
